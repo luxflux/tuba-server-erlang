@@ -5,4 +5,4 @@
               {applications,[kernel,stdlib]},
               {mod,{tubaserver_app,[]}},
               {env,[]},
-              {modules,[tubaserver_app,tubaserver_sup]}]}.
+              {modules,[tuba_server,tubaserver_app,tubaserver_sup]}]}.
