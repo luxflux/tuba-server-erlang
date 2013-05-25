@@ -10,7 +10,7 @@
 %% ===================================================================
 
 start(_StartType, _StartArgs) ->
-    tubaserver_sup:start().
+    tubaserver_sup:start_link().
 
 stop(_State) ->
     ok.

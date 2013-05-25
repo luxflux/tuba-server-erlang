@@ -1,8 +1,8 @@
 -module(tuba_server).
 
--export([start/0]).
+-export([start_link/0]).
 
-start() ->
+start_link() ->
     spawn(fun() -> server(4000) end).
 
 server(Port) ->
