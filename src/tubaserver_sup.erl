@@ -24,6 +24,6 @@ start_link() ->
 %% ===================================================================
 
 init([]) ->
-    TubaServer = ?CHILD(tubaserver, worker),
+    TubaServer = ?CHILD(tuba_server, worker),
     {ok, { {one_for_one, 5, 10}, [TubaServer]} }.
 
