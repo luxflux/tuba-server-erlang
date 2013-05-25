@@ -2,28 +2,37 @@
 
 -behaviour(gen_server).
 
--export([start_link/0, say_hello/0]).
+-define(SERVER, ?MODULE).
 
--export([init/1, handle_call/3, handle_cast/2, handle_info/2, terminate/2, code_change/3]).
+%% ------------------------------------------------------------------
+%% API Function Exports
+%% ------------------------------------------------------------------
+
+-export([start_link/0]).
+
+%% ------------------------------------------------------------------
+%% gen_server Function Exports
+%% ------------------------------------------------------------------
+
+-export([init/1, handle_call/3, handle_cast/2, handle_info/2,
+         terminate/2, code_change/3]).
+
+%% ------------------------------------------------------------------
+%% API Function Definitions
+%% ------------------------------------------------------------------
 
 start_link() ->
-    gen_server:start_link({local, ?MODULE}, ?MODULE, [], []).
+    gen_server:start_link({local, ?SERVER}, ?MODULE, [], []).
 
-init([]) ->
-    {ok, []}.
+%% ------------------------------------------------------------------
+%% gen_server Function Definitions
+%% ------------------------------------------------------------------
 
-say_hello() ->
-    gen_server:call(?MODULE, hello).
-
-
-%% callbacks
-handle_call(hello, _From, State) ->
-    io:format("Hello from server!~n", []),
-    {reply, ok, State};
+init(Args) ->
+    {ok, Args}.
 
 handle_call(_Request, _From, State) ->
-    Reply = ok,
-    {reply, Reply, State}.
+    {reply, ok, State}.
 
 handle_cast(_Msg, State) ->
     {noreply, State}.
@@ -36,6 +45,11 @@ terminate(_Reason, _State) ->
 
 code_change(_OldVsn, State, _Extra) ->
     {ok, State}.
+
+%% ------------------------------------------------------------------
+%% Internal Function Definitions
+%% ------------------------------------------------------------------
+
 
 %start() ->
 %    spawn(fun() -> server(4000) end).
